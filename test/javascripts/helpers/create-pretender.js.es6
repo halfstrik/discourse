@@ -85,6 +85,14 @@ export default function() {
 
     this.get('/users/:username/staff-info.json', () => response({}));
 
+    this.get('/post_action_users', () => {
+      return response({
+        post_action_users: [
+           {id: 1, username: 'eviltrout', avatar_template: '/user_avatar/default/eviltrout/{size}/1.png', username_lower: 'eviltrout' }
+         ]
+      });
+    });
+
     this.put('/categories/:category_id', function(request) {
       const category = parsePostData(request.requestBody);
       return response({category});

@@ -67,15 +67,9 @@
           {{conditional-loading-spinner condition=model.postStream.loadingAbove}}
 
           {{#unless model.postStream.loadingFilter}}
-            {{cloaked-collection itemViewClass="post"
-                                 defaultHeight="200"
-                                 content=postsToRender
-                                 slackRatio="15"
-                                 loadingHTML=""
-                                 preservesContext="true"
-                                 uncloakDefault="true"
-                                 offsetFixedTop="header"
-                                 offsetFixedBottom="#reply-control"}}
+            {{mount-widget widget="post-stream"
+                           args=(as-hash posts=postsToRender canCreatePost=model.details.can_create_post)
+                           showFlags="showFlags"}}
           {{/unless}}
         </div>
         <div id="topic-bottom"></div>

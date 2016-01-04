@@ -31,7 +31,14 @@ export default RestModel.extend({
     });
   },
 
-  toggle: function(post) {
+  togglePromise(post) {
+    if (!this.get('acted')) {
+      return this.act(post).then(() => true);
+    }
+    return this.undo(post).then(() => false);
+  },
+
+  toggle(post) {
     if (!this.get('acted')) {
       this.act(post);
       return true;
@@ -42,7 +49,7 @@ export default RestModel.extend({
   },
 
   // Perform this action
-  act: function(post, opts) {
+  act(post, opts) {
 
     if (!opts) opts = {};
 
@@ -83,7 +90,7 @@ export default RestModel.extend({
   },
 
   // Undo this action
-  undo: function(post) {
+  undo(post) {
     this.removeAction(post);
 
     // Remove our post action
@@ -97,7 +104,7 @@ export default RestModel.extend({
     });
   },
 
-  deferFlags: function(post) {
+  deferFlags(post) {
     const self = this;
     return Discourse.ajax("/post_actions/defer_flags", {
       type: "POST",

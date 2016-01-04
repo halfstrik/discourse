@@ -35,7 +35,6 @@ const Post = RestModel.extend({
   deletedViaTopic: Em.computed.and('firstPost', 'topic.deleted_at'),
   deleted: Em.computed.or('deleted_at', 'deletedViaTopic'),
   notDeleted: Em.computed.not('deleted'),
-  userDeleted: Em.computed.empty('user_id'),
 
   hasTimeGap: function() {
     return (this.get('daysSincePrevious') || 0) > Discourse.SiteSettings.show_time_gap_days;

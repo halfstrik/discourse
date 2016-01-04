@@ -38,4 +38,5 @@
 //= require break_string
 //= require buffered-proxy
 //= require jquery.autoellipsis-1.0.10.min.js
+//= require virtual-dom
 //= require_tree ./discourse/ember
